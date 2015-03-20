@@ -1,10 +1,6 @@
 package survey;
 
-import survey.listener.BeerSessionCounter;
-import survey.model.*;
-
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import survey.listener.BeerSessionCounter;
+import survey.model.SurveyResult;
 
 /**
  * Servlet implementation class Survey
