@@ -48,17 +48,25 @@ public class Survey extends HttpServlet {
     	HttpSession session=request.getSession();
     	if (surveyResult==null){surveyResult=new SurveyResult(productList.length);}
     	String[][] preferences=(String[][]) session.getAttribute("preferences");
+    	String voteProduct=(String) session.getAttribute("voteProduct");
     	String testinva=(String) session.getAttribute("testinva");
     	String Agent = request.getHeader("User-Agent");
     	if (testinva==null){testinva="testinva----"+Agent;session.setAttribute("testinva", testinva);}
     	if (preferences==null){preferences=initPreferences(productList,surveyResult);}
     	String gender=request.getParameter("gender");
     	String vote=request.getParameter("vote");
+    	if (voteProduct!=null){request.setAttribute("info", "You have voted " + voteProduct);}
     	if (vote!=null&&!"".equals(vote.trim())) {
-			surveyResult.addPref(Integer.parseInt(gender),Integer.parseInt(vote));
-			int i=Integer.parseInt(vote);
-			preferences[Integer.parseInt(gender)][i]=productList[i].trim()+ ": "+
-					String.valueOf(surveyResult.getPref(Integer.parseInt(gender), i));
+			if (voteProduct==null){
+				surveyResult.addPref(Integer.parseInt(gender),Integer.parseInt(vote));
+				int i=Integer.parseInt(vote);
+				preferences[Integer.parseInt(gender)][i]=productList[i].trim()+ ": "+
+						String.valueOf(surveyResult.getPref(Integer.parseInt(gender), i));
+				request.setAttribute("info", "Thank you for participating in the Mobile Purchasing Survey!");
+				session.setAttribute("voteProduct", productList[Integer.parseInt(vote)]);
+			}
+		}else{
+			if (voteProduct==null) {request.setAttribute("info", "Plz choose a prodcut for voting" );}
 		}
     	request.setAttribute("preferences", preferences);
     	session.setAttribute("preferences", preferences);

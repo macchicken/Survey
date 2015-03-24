@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<h3> Thank you for participating in the Mobile Purchasing Survey!</h3>
+<h3> ${info} </h3>
 <h4> Current Survey Results: </h4>
 
 <h5> For Female Respondents</h5>
