@@ -56,18 +56,17 @@ public class Survey extends HttpServlet {
     	String gender=request.getParameter("gender");
     	String vote=request.getParameter("vote");
     	if (voteProduct!=null){request.setAttribute("info", "You have voted " + voteProduct);}
+    	else{
     	if (vote!=null&&!"".equals(vote.trim())) {
-			if (voteProduct==null){
 				surveyResult.addPref(Integer.parseInt(gender),Integer.parseInt(vote));
 				int i=Integer.parseInt(vote);
 				preferences[Integer.parseInt(gender)][i]=productList[i].trim()+ ": "+
 						String.valueOf(surveyResult.getPref(Integer.parseInt(gender), i));
 				request.setAttribute("info", "Thank you for participating in the Mobile Purchasing Survey!");
 				session.setAttribute("voteProduct", productList[Integer.parseInt(vote)]);
-			}
 		}else{
-			if (voteProduct==null) {request.setAttribute("info", "Plz choose a prodcut for voting" );}
-		}
+			request.setAttribute("info", "Plz choose a prodcut for voting" );
+		}}
     	request.setAttribute("preferences", preferences);
     	session.setAttribute("preferences", preferences);
     	request.setAttribute("activeSessions", BeerSessionCounter.getActiveSessions());
