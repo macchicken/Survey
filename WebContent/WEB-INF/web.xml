@@ -3,12 +3,28 @@
   <display-name>Survey</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  	<security-role><role-name>SurveyAdmin</role-name></security-role>
+	<security-role><role-name>SurveyMember</role-name></security-role>
+	<security-role><role-name>SurveyGuest</role-name></security-role>
+	<security-constraint>
+	<web-resource-collection>
+		<web-resource-name>Survey Protected Area</web-resource-name>
+		<url-pattern>*.do</url-pattern>
+		<http-method>DELETE</http-method> 
+		<http-method>GET</http-method> 
+		<http-method>POST</http-method> 
+		<http-method>PUT</http-method>
+	</web-resource-collection>
+	<auth-constraint>
+		<role-name>SurveyAdmin</role-name>
+		<role-name>SurveyMember</role-name>
+		<role-name>SurveyGuest</role-name>
+	</auth-constraint>
+	<!-- <user-data-constraint>
+		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+	</user-data-constraint> -->
+	</security-constraint>
   <listener>
 	<listener-class>
 	survey.listener.BeerSessionCounter
@@ -20,6 +36,13 @@
 	</listener-class>
   </listener>
   <session-config>
-	<session-timeout>1</session-timeout>
+	<session-timeout>30</session-timeout>
 	</session-config>
+	<login-config> 
+		<auth-method>FORM</auth-method> 
+		<form-login-config> 
+			<form-login-page>/login.html</form-login-page> 
+			<form-error-page>/loginError.html</form-error-page> 
+		</form-login-config> 
+</login-config> 
 </web-app>

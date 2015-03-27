@@ -17,7 +17,7 @@ import survey.model.SurveyResult;
  * This servlet displays a survey for user's next purchase
  */
  
-@WebServlet(value="/surveyForm", initParams = {
+@WebServlet(value="/surveyForm.do", initParams = {
 		@WebInitParam(name="products", value="iphone6s, Samsung Galaxy 7, Nokia Lumia 532 ")
 })
 public class SurveyForm extends HttpServlet {
@@ -47,6 +47,7 @@ public class SurveyForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher("/survey.jsp");
 		request.setAttribute("activeSessions", BeerSessionCounter.getActiveSessions());
+		request.setAttribute("displayRoleInfo", Constants.displayUserRoleInfo(request));
 		view.forward(request,response);
 	}
 

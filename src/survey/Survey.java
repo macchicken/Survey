@@ -18,7 +18,7 @@ import survey.model.SurveyResult;
  * This class handles survey submitted by the user and displays results in another JSP
  */
 
-@WebServlet("/survey")
+@WebServlet("/survey.do")
 public class Survey extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     /**
@@ -70,6 +70,7 @@ public class Survey extends HttpServlet {
     	request.setAttribute("preferences", preferences);
     	session.setAttribute("preferences", preferences);
     	request.setAttribute("activeSessions", BeerSessionCounter.getActiveSessions());
+    	request.setAttribute("displayRoleInfo", Constants.displayUserRoleInfo(request));
 		// let a jsp page display the result
     	RequestDispatcher view = request.getRequestDispatcher("/surveyResult.jsp");
 		view.forward(request,response);

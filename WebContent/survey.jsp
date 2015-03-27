@@ -9,8 +9,8 @@
 <link rel="stylesheet" type="text/css" href="css/surveystyle.css" media="screen" />
 </head>
 <body>
-<h2>Welcome to the Mobile Purchashing Survey</h2>
-<form method = "POST" action="survey">
+<h2>Welcome to the Mobile Purchasing Survey</h2>
+<form method = "POST" action="survey.do">
 <h4>Your Gender: </h4>
 
 <label>
@@ -39,5 +39,7 @@ Male
 <br />
 <h4>number of activeSessions</h4>
 <input type="text" name="activeSessions" value = "${activeSessions}" readonly/>
+<h4>user role information</h4>
+<p>${displayRoleInfo}</p>
 </body>
 </html>

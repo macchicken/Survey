@@ -23,8 +23,10 @@
 	${prefStatment}<br>
 </c:forEach>
 <br><br>
-<a href="/Survey/surveyForm">back to survey form</a><br><br>
+<a href="surveyForm.do">back to survey form</a><br><br>
 <h4>number of activeSessions</h4>
 <input type="text" name="activeSessions" value = "${activeSessions}" readonly/>
+<h4>user role information</h4>
+<p>${displayRoleInfo}</p>
 </body>
 </html>
