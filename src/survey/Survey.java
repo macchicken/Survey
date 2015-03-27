@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import survey.listener.BeerSessionCounter;
 import survey.model.SurveyResult;
 
 /**
@@ -26,7 +25,6 @@ public class Survey extends HttpServlet {
      */
     public Survey() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     private String[][] initPreferences(String[] productList,SurveyResult surveyResult){
@@ -48,15 +46,11 @@ public class Survey extends HttpServlet {
     	HttpSession session=request.getSession();
     	if (surveyResult==null){surveyResult=new SurveyResult(productList.length);}
     	String[][] preferences=(String[][]) session.getAttribute("preferences");
-    	String voteProduct=(String) session.getAttribute("voteProduct");
-    	String testinva=(String) session.getAttribute("testinva");
-    	String Agent = request.getHeader("User-Agent");
-    	if (testinva==null){testinva="testinva----"+Agent;session.setAttribute("testinva", testinva);}
     	if (preferences==null){preferences=initPreferences(productList,surveyResult);}
     	String gender=request.getParameter("gender");
     	String vote=request.getParameter("vote");
-    	if (voteProduct!=null){request.setAttribute("info", "You have voted " + voteProduct);}
-    	else{
+    	Boolean voted=(Boolean) request.getAttribute("voted");
+    	if (!voted){
     	if (vote!=null&&!"".equals(vote.trim())) {
 				surveyResult.addPref(Integer.parseInt(gender),Integer.parseInt(vote));
 				int i=Integer.parseInt(vote);
@@ -69,8 +63,6 @@ public class Survey extends HttpServlet {
 		}}
     	request.setAttribute("preferences", preferences);
     	session.setAttribute("preferences", preferences);
-    	request.setAttribute("activeSessions", BeerSessionCounter.getActiveSessions());
-    	request.setAttribute("displayRoleInfo", Constants.displayUserRoleInfo(request));
 		// let a jsp page display the result
     	RequestDispatcher view = request.getRequestDispatcher("/surveyResult.jsp");
 		view.forward(request,response);

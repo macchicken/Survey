@@ -25,6 +25,7 @@
 		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 	</user-data-constraint> -->
 	</security-constraint>
+
   <listener>
 	<listener-class>
 	survey.listener.BeerSessionCounter
@@ -44,5 +45,30 @@
 			<form-login-page>/login.html</form-login-page> 
 			<form-error-page>/loginError.html</form-error-page> 
 		</form-login-config> 
-</login-config> 
+	</login-config>
+	<filter>
+		<filter-name>BeerRequest</filter-name>
+		<filter-class>survey.filter.BeerRequestFilter</filter-class>
+		<init-param>
+			<param-name>LogFileName</param-name>
+			<param-value>UserLog.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+	<filter-name>BeerRequest</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>SurveyDoRequest</filter-name>
+		<filter-class>survey.filter.SurveyDoRequestFilter</filter-class>
+		<init-param>
+			<param-name>LogFileName</param-name>
+			<param-value>UserLog.txt</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+	<filter-name>SurveyDoRequest</filter-name>
+		<url-pattern>/survey.do</url-pattern>
+	</filter-mapping>
+
 </web-app>

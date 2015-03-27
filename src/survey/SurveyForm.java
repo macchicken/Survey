@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import survey.listener.BeerSessionCounter;
 import survey.model.SurveyResult;
 /**
  * Servlet implementation class SurveyForm
@@ -28,7 +27,6 @@ public class SurveyForm extends HttpServlet {
      */
     public SurveyForm() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -46,8 +44,6 @@ public class SurveyForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher("/survey.jsp");
-		request.setAttribute("activeSessions", BeerSessionCounter.getActiveSessions());
-		request.setAttribute("displayRoleInfo", Constants.displayUserRoleInfo(request));
 		view.forward(request,response);
 	}
 
@@ -55,7 +51,6 @@ public class SurveyForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
