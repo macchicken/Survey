@@ -11,6 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import survey.model.SurveyFormModel;
+
 public class SurveyDoRequestFilter implements Filter {
 
 	private FilterConfig fc;
@@ -23,19 +25,20 @@ public class SurveyDoRequestFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpReq = (HttpServletRequest) request;
-		String name = httpReq.getRemoteUser();
+		SurveyFormModel model=new SurveyFormModel((HttpServletRequest) request);
+		String name = model.getRemoteUser();
 		if (name != null) {fc.getServletContext().log("User " + name + " do Filter in SurveyDoRequestFilter");}
-		HttpSession session=httpReq.getSession();
+		HttpSession session=model.getSession();
 		String voteProduct=(String) session.getAttribute("voteProduct");
 		if (voteProduct!=null){
-			httpReq.setAttribute("info", "You have voted " + voteProduct);
-			httpReq.setAttribute("voted", new Boolean(true));}
-		else{httpReq.setAttribute("voted", new Boolean(false));}
+			model.setInfo("You have voted " + voteProduct);
+			model.setVoted(new Boolean(true));
+		}
+		else{model.setVoted(new Boolean(false));}
 		String testinva=(String) session.getAttribute("testinva");
-    	String Agent = httpReq.getHeader("User-Agent");
+    	String Agent = model.getHeader("User-Agent");
     	if (testinva==null){testinva="testinva----"+Agent;session.setAttribute("testinva", testinva);}
-		chain.doFilter(request, response);
+		chain.doFilter(model, response);
 
 	}
 
