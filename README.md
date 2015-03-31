@@ -1,5 +1,6 @@
 # Survey
-Survey
+Survey 
+http://localhost:10080/Survey
 
 keytool -genkey -alias tomcat -keyalg RSA --- generate keystore
 add keystoreFile="the path of .keystore file" keystorePass="the password entered when create the .keystore file"

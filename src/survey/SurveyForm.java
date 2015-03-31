@@ -21,7 +21,7 @@ import survey.model.SurveyResult;
 })
 public class SurveyForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private UserSurveyResults userSurveyResults;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,12 +38,15 @@ public class SurveyForm extends HttpServlet {
     	SurveyResult sr = new SurveyResult(productList.length);
     	getServletContext().setAttribute("productList", productList);
     	getServletContext().setAttribute("surveyResult", sr);
+    	userSurveyResults=InMemoryUserSurveyResults.getInstance(); 
     }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view = request.getRequestDispatcher("/survey.jsp");
+		String voteProduct=userSurveyResults.getSurveyResult(request.getRemoteUser());
+		if (voteProduct!=null){request.getSession().setAttribute("voteProduct", voteProduct);}
 		view.forward(request,response);
 	}
 

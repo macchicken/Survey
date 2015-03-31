@@ -21,6 +21,7 @@ import survey.model.SurveyResult;
 @WebServlet("/survey.do")
 public class Survey extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserSurveyResults userSurveyResults;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,7 +29,12 @@ public class Survey extends HttpServlet {
         super();
     }
 
-    private String[][] initPreferences(String[] productList,SurveyResult surveyResult){
+    @Override
+	public void init() throws ServletException {
+    	userSurveyResults=InMemoryUserSurveyResults.getInstance();
+	}
+
+	private String[][] initPreferences(String[] productList,SurveyResult surveyResult){
     	String[][] preferences=new String[2][productList.length];
     	for (int i = 0; i < preferences.length; i++) {
     		for (int j=0;j<preferences[i].length;j++){
@@ -52,12 +58,13 @@ public class Survey extends HttpServlet {
     	String gender=model.getGender();String vote=model.getVote();
     	if (!model.isVoted()){
     	if (vote!=null&&!"".equals(vote.trim())) {
-				surveyResult.addPref(Integer.parseInt(gender),Integer.parseInt(vote));
-				int i=Integer.parseInt(vote);
+	    		int i=Integer.parseInt(vote);
+				surveyResult.addPref(Integer.parseInt(gender),i);
 				preferences[Integer.parseInt(gender)][i]=productList[i].trim()+ ": "+
 						String.valueOf(surveyResult.getPref(Integer.parseInt(gender), i));
 				model.setInfo("Thank you for participating in the Mobile Purchasing Survey!");
-				session.setAttribute("voteProduct", productList[Integer.parseInt(vote)]);
+				session.setAttribute("voteProduct", productList[i]);
+				userSurveyResults.addSurveyResult(model.getRemoteUser(), productList[i]);
 		}else{
 			model.setInfo("Plz choose a prodcut for voting");
 		}}

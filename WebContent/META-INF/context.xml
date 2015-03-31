@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/survey">
+<Context path="/Survey">
+	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 	<Resource name="jdbc/survey" type="javax.sql.DataSource"
 		username="postgres" password="1qazXSW@" driverClassName="org.postgresql.Driver"
 		maxIdle="2" maxWait="5000" maxActive="100" validationQuery="SELECT * FROM users"
