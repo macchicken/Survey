@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/survey">
+	<Resource name="jdbc/survey" type="javax.sql.DataSource"
+		username="postgres" password="1qazXSW@" driverClassName="org.postgresql.Driver"
+		maxIdle="2" maxWait="5000" maxActive="100" validationQuery="SELECT * FROM users"
+		url="jdbc:postgresql://127.0.0.1:20015/postgres"
+		poolPreparedStatements="true" />
+	<Realm className="org.apache.catalina.realm.DataSourceRealm"
+		localDataSource="true" dataSourceName="jdbc/survey" userTable="users"
+		userNameCol="user_name" userCredCol="user_pass" userRoleTable="user_roles"
+		roleNameCol="role_name" digest="MD5"/>
+</Context>

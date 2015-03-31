@@ -28,5 +28,7 @@
 <input type="text" name="activeSessions" value = "${activeSessions}" readonly/>
 <h4>user role information</h4>
 <p>${displayRoleInfo}</p>
+<br/><br/>
+<a href="surveylogout.do">log out</a><br><br>
 </body>
 </html>

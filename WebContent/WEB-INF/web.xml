@@ -4,71 +4,77 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  	<security-role><role-name>SurveyAdmin</role-name></security-role>
-	<security-role><role-name>SurveyMember</role-name></security-role>
-	<security-role><role-name>SurveyGuest</role-name></security-role>
-	<security-constraint>
-	<web-resource-collection>
-		<web-resource-name>Survey Protected Area</web-resource-name>
-		<url-pattern>*.do</url-pattern>
-		<http-method>DELETE</http-method> 
-		<http-method>GET</http-method> 
-		<http-method>POST</http-method> 
-		<http-method>PUT</http-method>
-	</web-resource-collection>
-	<auth-constraint>
-		<role-name>SurveyAdmin</role-name>
-		<role-name>SurveyMember</role-name>
-		<role-name>SurveyGuest</role-name>
-	</auth-constraint>
-	<!-- <user-data-constraint>
-		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-	</user-data-constraint> -->
-	</security-constraint>
-
+  <security-role>
+    <role-name>SurveyAdmin</role-name>
+  </security-role>
+  <security-role>
+    <role-name>SurveyMember</role-name>
+  </security-role>
+  <security-role>
+    <role-name>SurveyGuest</role-name>
+  </security-role>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Survey Protected Area</web-resource-name>
+      <url-pattern>*.do</url-pattern>
+      <http-method>DELETE</http-method>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>PUT</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>SurveyAdmin</role-name>
+      <role-name>SurveyMember</role-name>
+      <role-name>SurveyGuest</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <resource-ref>
+    <res-ref-name>jdbc/survey</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
   <listener>
-	<listener-class>
+    <listener-class>
 	survey.listener.BeerSessionCounter
 	</listener-class>
   </listener>
   <listener>
-	<listener-class>
+    <listener-class>
 	survey.listener.BeerAttributeListener
 	</listener-class>
   </listener>
   <session-config>
-	<session-timeout>30</session-timeout>
-	</session-config>
-	<login-config> 
-		<auth-method>FORM</auth-method> 
-		<form-login-config> 
-			<form-login-page>/login.html</form-login-page> 
-			<form-error-page>/loginError.html</form-error-page> 
-		</form-login-config> 
-	</login-config>
-	<filter>
-		<filter-name>BeerRequest</filter-name>
-		<filter-class>survey.filter.BeerRequestFilter</filter-class>
-		<init-param>
-			<param-name>LogFileName</param-name>
-			<param-value>UserLog.txt</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-	<filter-name>BeerRequest</filter-name>
-		<url-pattern>*.do</url-pattern>
-	</filter-mapping>
-	<filter>
-		<filter-name>SurveyDoRequest</filter-name>
-		<filter-class>survey.filter.SurveyDoRequestFilter</filter-class>
-		<init-param>
-			<param-name>LogFileName</param-name>
-			<param-value>UserLog.txt</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-	<filter-name>SurveyDoRequest</filter-name>
-		<url-pattern>/survey.do</url-pattern>
-	</filter-mapping>
-
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.html</form-login-page>
+      <form-error-page>/loginError.html</form-error-page>
+    </form-login-config>
+  </login-config>
+  <filter>
+    <filter-name>BeerRequest</filter-name>
+    <filter-class>survey.filter.BeerRequestFilter</filter-class>
+    <init-param>
+      <param-name>LogFileName</param-name>
+      <param-value>UserLog.txt</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>BeerRequest</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>SurveyDoRequest</filter-name>
+    <filter-class>survey.filter.SurveyDoRequestFilter</filter-class>
+    <init-param>
+      <param-name>LogFileName</param-name>
+      <param-value>UserLog.txt</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>SurveyDoRequest</filter-name>
+    <url-pattern>/survey.do</url-pattern>
+  </filter-mapping>
 </web-app>
