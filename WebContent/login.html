@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/surveystyle.css" />
 <meta charset="UTF-8">
-<title></title>
+<title>Welcome to the Mobile Purchasing Survey, G'day mate</title>
 <meta http-equiv="Cache-Control" content="no-store,no-cache,must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 </head>
 <body>
-<h2>Welcome to the Mobile Purchasing Survey, login mate</h2>
+<!--<h2>Welcome to the Mobile Purchasing Survey, G'day mate</h2>
 <form method="POST"  action="j_security_check" >
 <input type="text"  name="j_username" >
 <input type="password"  name="j_password" >
-<input type="submit" value="Enter">
-</form>
+<input type="submit" value="Login">
+</form>-->
+<div class="widget-box">
+	<div class="widget-header">
+	<h5 class="widget-title">Welcome to the Mobile Purchasing Survey, G'day mate</h5>
+	</div>
+	<div class="widget-body">
+		<div class="widget-main">
+			<form method="POST"  action="j_security_check" >
+				<input type="text"  class="input-small" placeholder="username" name="j_username" >
+				<input type="password"  class="input-small" placeholder="password" name="j_password" >
+				<input type="submit" class="btn btn-info btn-sm" value="Login">
+			</form>
+		</div>
+	</div>
+</div>
 </body>
 </html>
