@@ -1,4 +1,4 @@
-package survey;
+package survey.common;
 
 public enum Products {
 	iphone6s("iphone6s",0),SamsungGalaxy7("Samsung Galaxy 7",1),NokiaLumia532("Nokia Lumia 532",2);

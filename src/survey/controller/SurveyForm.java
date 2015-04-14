@@ -1,4 +1,4 @@
-package survey;
+package survey.controller;
 
 import java.io.IOException;
 
@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import survey.model.SurveyResult;
+import survey.service.InMemoryUserSurveyResults;
+import survey.service.UserSurveyResults;
 /**
  * Servlet implementation class SurveyForm
  * This servlet displays a survey for user's next purchase

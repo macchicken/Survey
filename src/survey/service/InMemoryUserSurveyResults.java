@@ -1,4 +1,4 @@
-package survey;
+package survey.service;
 
 import java.util.HashMap;
 

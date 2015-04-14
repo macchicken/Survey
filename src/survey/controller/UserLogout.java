@@ -1,4 +1,4 @@
-package survey;
+package survey.controller;
 
 import java.io.IOException;
 

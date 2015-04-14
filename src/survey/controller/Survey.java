@@ -1,4 +1,4 @@
-package survey;
+package survey.controller;
 
 import java.io.IOException;
 
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import survey.model.SurveyFormModel;
 import survey.model.SurveyResult;
+import survey.service.InMemoryUserSurveyResults;
+import survey.service.UserSurveyResults;
 
 /**
  * Servlet implementation class Survey

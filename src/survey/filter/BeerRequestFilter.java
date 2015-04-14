@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import survey.Constants;
+import survey.common.Constants;
 import survey.listener.BeerSessionCounter;
 
 public class BeerRequestFilter implements Filter {

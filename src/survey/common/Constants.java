@@ -1,4 +1,4 @@
-package survey;
+package survey.common;
 
 import java.util.ArrayList;
 
